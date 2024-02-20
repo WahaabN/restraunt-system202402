@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 
 
@@ -29,6 +30,40 @@ class MenuController extends Controller
         
 
         return view('menu', ['items' => $items]);
+    }
+
+    public function showOrders(){
+        $orderQueue = [
+            [
+                'order_id' => 1,
+                'order_number' => 'ORD001',
+                'customer_name' => 'John Doe',
+                'status' => 0 // waiting
+            ],
+            [
+                'order_id' => 2,
+                'order_number' => 'ORD002',
+                'customer_name' => 'Jane Smith',
+                'status' => 1 // being prepared
+            ],
+            [
+                'order_id' => 3,
+                'order_number' => 'ORD003',
+                'customer_name' => 'Alice Johnson',
+                'status' => 2 // ready to collect
+            ],
+            [
+                'order_id' => 4,
+                'order_number' => 'ORD004',
+                'customer_name' => 'Bob Brown',
+                'status' => 0 // waiting
+            ],
+            // Add more orders as needed
+        ];
+
+        return Inertia::render('OrderQueue', [
+            'orders'=> $orderQueue
+            ]);
     }
 
     public function show($id){
