@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MenuController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -50,40 +51,9 @@ Route::get('/menu', function () {
 });
 
 
-Route::get('/queue', function () {
-    $orderQueue = [
-        [
-            'order_id' => 1,
-            'order_number' => 'ORD001',
-            'customer_name' => 'John Doe',
-            'status' => 0 // waiting
-        ],
-        [
-            'order_id' => 2,
-            'order_number' => 'ORD002',
-            'customer_name' => 'Jane Smith',
-            'status' => 1 // being prepared
-        ],
-        [
-            'order_id' => 3,
-            'order_number' => 'ORD003',
-            'customer_name' => 'Alice Johnson',
-            'status' => 2 // ready to collect
-        ],
-        [
-            'order_id' => 4,
-            'order_number' => 'ORD004',
-            'customer_name' => 'Bob Brown',
-            'status' => 0 // waiting
-        ],
-        // Add more orders as needed
-    ];
-    
-    
-    return Inertia::render('OrderQueue', [
-    'orderQueue'=> $orderQueue
-    ]);
-});
+
+
+Route::get('/queue', [MenuController::class, 'showOrders']);
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
