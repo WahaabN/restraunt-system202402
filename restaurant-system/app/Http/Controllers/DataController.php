@@ -19,8 +19,13 @@ class DataController extends Controller
     public function updateOrderStatus(){
 
         $orderID = request('orderID');
-        $orderID = request('status');
+        $status = request('status');
         error_log("An error occurred while processing order ID: $orderID");
+
+        $order = Order::findOrFail($orderID);
+        $order->status = $status;
+
+        $order->save();
         return response()->json($orderID);
     }
 }
