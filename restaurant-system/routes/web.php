@@ -54,6 +54,9 @@ Route::get('/menu', function () {
 
 
 Route::get('/queue', [MenuController::class, 'showOrders']);
+
+
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

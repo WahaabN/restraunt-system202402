@@ -14,4 +14,13 @@ class DataController extends Controller
 
         return response()->json($data);
     }
+
+
+    public function updateOrderStatus(){
+
+        $orderID = request('orderID');
+        $orderID = request('status');
+        error_log("An error occurred while processing order ID: $orderID");
+        return response()->json($orderID);
+    }
 }

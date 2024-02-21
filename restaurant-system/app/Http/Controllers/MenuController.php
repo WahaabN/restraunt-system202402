@@ -33,12 +33,11 @@ class MenuController extends Controller
         return view('menu', ['items' => $items]);
     }
 
+    
     public function showOrders(){
-  $orderQueue = Order::all();
 
-        return Inertia::render('OrderQueue', [
-            'orderQueue'=> $orderQueue
-            ]);
+
+        return Inertia::render('OrderQueue');
     }
 
     public function show($id){

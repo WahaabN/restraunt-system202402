@@ -24,6 +24,12 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function updateOrderStatus(){
+
+        $orderID = request('orderID');
+        $orderID = request('status');
+        error_log("An error occurred while processing order ID: $orderID");
+    }
     /**
      * Update the user's profile information.
      */
