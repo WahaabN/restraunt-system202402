@@ -23,9 +23,17 @@ class DataController extends Controller
         error_log("An error occurred while processing order ID: $orderID");
 
         $order = Order::findOrFail($orderID);
-        $order->status = $status;
 
-        $order->save();
+        if($status === "delete"){
+            $order->delete();
+        }else{
+            $order->status = $status;
+            $order->save();
+        }
+
+        
+
+        
         return response()->json($orderID);
     }
 }

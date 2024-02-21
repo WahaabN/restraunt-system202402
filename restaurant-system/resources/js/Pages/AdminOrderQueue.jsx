@@ -65,7 +65,7 @@ export default function AdminOrderQueue() {
                 <button onClick={() => changeStatus(order.id, 0)} className='ml-1 mr-1'>Awaiting</button>
                 <button onClick={() => changeStatus(order.id, 1)} className='ml-1 mr-1'>Preparing</button>
                 <button onClick={() => changeStatus(order.id, 2)} className='ml-1 mr-1'>Ready</button>
-                <button className='ml-1 mr-1'>Delete</button>
+                <button onClick={() => changeStatus(order.id, "delete")} className='ml-1 mr-1'>Delete</button>
                 </div>
               </div>
             ))}
