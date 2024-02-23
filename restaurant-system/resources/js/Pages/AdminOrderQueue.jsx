@@ -47,7 +47,7 @@ export default function AdminOrderQueue() {
               
 
               <div className={`queue-card col-4 p-4 ${order.status === 0 ? 'awaiting-queue-card' : order.status === 1 ? 'preparing-queue-card' : order.status === 2 ?'ready-queue-card': ''}`} key={order.order_id}>
-                <h2>{order.order_number}</h2>
+                <h2>{order.order_number}- {order.customer_name}</h2>
               
    
 

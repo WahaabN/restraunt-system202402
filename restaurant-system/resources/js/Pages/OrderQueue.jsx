@@ -25,30 +25,61 @@ export default function OrderQueue() {
       return () => clearInterval(interval); // Cleanup on unmount
     }, []);
   
+
+    
   
 
     console.log(data);
     return (
       <div className='container'>
           <div className="row">
-            {data.map((order) => (
+            {data.filter(order => order.status === 0).map((order) => (
               
 
-              <div className={`queue-card col-4 p-4 ${order.status === 0 ? 'awaiting-queue-card' : order.status === 1 ? 'preparing-queue-card' : order.status === 2 ?'ready-queue-card': ''}`} key={order.order_id}>
+              <div className={`queue-card col-4 p-4 awaiting-queue-card`} key={order.order_id}>
                 <h2>{order.order_number}</h2>
               
    
 
 
-                {order.status === 0 && 
                   <h2>awaiting</h2>
-                }
-                {order.status === 1 && 
+                
+
+              </div>
+            ))}
+          </div>
+          <div className="row">
+            {data.filter(order => order.status === 1).map((order) => (
+              
+
+              <div className={`queue-card col-4 p-4 preparing-queue-card`} key={order.order_id}>
+                <h2>{order.order_number}</h2>
+              
+   
+
+
+     
+              
                   <h2>with the chef</h2>
-                }
-                {order.status === 2 && 
+              
+      
+              </div>
+            ))}
+          </div>
+          <div className="row">
+            {data.filter(order => order.status === 2).map((order) => (
+              
+
+              <div className={`queue-card col-4 p-4 ready-queue-card`} key={order.order_id}>
+                <h2>{order.order_number}</h2>
+              
+   
+
+
+        
+
                   <h2>ORDERS UP</h2>
-                }
+            
               </div>
             ))}
           </div>

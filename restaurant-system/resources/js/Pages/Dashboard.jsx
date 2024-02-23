@@ -1,6 +1,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import AdminOrderQueue from './AdminOrderQueue';
+import AdminAddOrder from './AdminAddOrder';
 
 export default function Dashboard({ auth }) {
     return (
@@ -20,6 +21,8 @@ export default function Dashboard({ auth }) {
 
 
             <AdminOrderQueue />
+
+            <AdminAddOrder />
         </AuthenticatedLayout>
     );
 }
