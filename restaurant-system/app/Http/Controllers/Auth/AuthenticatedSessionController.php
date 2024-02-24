@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
-
+use Laravel\Sanctum\HasApiTokens;
 class AuthenticatedSessionController extends Controller
 {
     /**
@@ -41,8 +41,13 @@ class AuthenticatedSessionController extends Controller
      * Destroy an authenticated session.
      */
     public function destroy(Request $request): RedirectResponse
-    {
+    {   
+        $user = Auth::user();
+
+        // Revoke all access tokens
+$user->tokens->each->delete();
         Auth::guard('web')->logout();
+        error_log($user->tokens);
 
         $request->session()->invalidate();
 

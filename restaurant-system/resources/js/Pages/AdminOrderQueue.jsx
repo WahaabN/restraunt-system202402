@@ -4,13 +4,19 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
-export default function AdminOrderQueue() {
-        
+export default function AdminOrderQueue(props) {
+  const { accessToken } = props;
+
+  console.log("order queue token", accessToken)
   function changeStatus(orderID, status) {
     console.log('/api/updateOrderStatus', { orderID, status });
     
     // Send a POST request to update the status
-    axios.post('/api/updateOrderStatus', { orderID, status })
+    axios.post('/api/updateOrderStatus', { orderID, status },{
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+    }
+    })
       .then(response => {
         console.log('Status updated successfully:', response.data);
       })

@@ -3,7 +3,10 @@ import { Head } from '@inertiajs/react';
 import AdminOrderQueue from './AdminOrderQueue';
 import AdminAddOrder from './AdminAddOrder';
 
-export default function Dashboard({ auth }) {
+export default function Dashboard({ auth, token }) {
+    console.log(token)
+
+
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -20,7 +23,7 @@ export default function Dashboard({ auth }) {
             </div>
 
 
-            <AdminOrderQueue />
+            <AdminOrderQueue accessToken = {token} />
 
             <AdminAddOrder />
         </AuthenticatedLayout>
