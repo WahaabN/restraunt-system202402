@@ -1,2 +1,0 @@
--lock api behind authentication
-	-laravel sanctum

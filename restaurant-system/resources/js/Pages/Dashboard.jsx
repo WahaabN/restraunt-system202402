@@ -16,14 +16,6 @@ export default function Dashboard({ auth }) {
                     </div>
                 </div>
             </div>
-<<<<<<< Updated upstream
-=======
-
-
-            <AdminOrderQueue accessToken = {token} />
-
-            <AdminAddOrder accessToken = {token} />
->>>>>>> Stashed changes
         </AuthenticatedLayout>
     );
 }
