@@ -25,7 +25,7 @@ export default function Dashboard({ auth, token }) {
 
             <AdminOrderQueue accessToken = {token} />
 
-            <AdminAddOrder />
+            <AdminAddOrder accessToken = {token} />
         </AuthenticatedLayout>
     );
 }

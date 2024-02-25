@@ -4,14 +4,3 @@
 
 
 
-.awaiting-queue-card{
-    background-color: rgb(206, 206, 206);
-}
-
-.preparing-queue-card{
-    background-color: rgb(231, 218, 195);
-}
-
-.ready-queue-card{
-    background-color: rgb(168, 214, 168);
-}

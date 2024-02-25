@@ -4,18 +4,31 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
-export default function AdminAddOrder() {
+export default function AdminAddOrder(props) {
+
+  const { accessToken } = props;
+
   function createOrder() {
+
     console.log('/api/createOrder', { orderName });
-    
+
     // Send a POST request to update the status
-    axios.post('/api/createOrder', { orderName })
+    axios.post('/api/createOrder', { orderName },{
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+    }
+    })
       .then(response => {
         console.log('Status updated successfully:', response.data);
       })
       .catch(error => {
         console.error('Error updating status:', error);
       });
+    console.log('/api/createOrder', { orderName });
+
+    
+
+
   }
 
 const [orderName, setOrderName] = useState('')
@@ -31,16 +44,16 @@ const submitOrder = ()=>{
   createOrder();
   setOrderName('')
 }
- 
+
     return (
       <div className='container'>
 
-        
+
           <h1>THIS IS THE ORDER SECTION</h1>
 
-     
+
       <input value = {orderName} onChange = {handleInputChange} type="text"></input>
       <button onClick={submitOrder}>submit</button>
-      
+
       </div>    );
 }
