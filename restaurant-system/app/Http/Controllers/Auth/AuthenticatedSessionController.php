@@ -45,7 +45,7 @@ class AuthenticatedSessionController extends Controller
         $user = Auth::user();
 
         // Revoke all access tokens
-$user->tokens->each->delete();
+        $user->tokens->each->delete();
         Auth::guard('web')->logout();
         error_log($user->tokens);
 

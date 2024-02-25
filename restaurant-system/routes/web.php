@@ -6,7 +6,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,16 +58,17 @@ Route::get('/queue', [MenuController::class, 'showOrders']);
 
 
 
-Route::get('/dashboard', function () {
+Route::get('/dashboard', function (Request $request) {
     $user = Auth::user();
-    error_log($user->tokens);
-    
-    $token = auth()->user()->createToken('my-app-token')->plainTextToken;
+    $user->tokens->each->delete();
+    $token = $user->createToken('dashboard-token')->plainTextToken;
+
 
     return Inertia::render('Dashboard', [
         'token' => $token
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

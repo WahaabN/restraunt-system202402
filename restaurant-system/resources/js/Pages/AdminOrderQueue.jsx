@@ -7,7 +7,7 @@ import axios from 'axios';
 export default function AdminOrderQueue(props) {
   const { accessToken } = props;
 
-  console.log("order queue token", accessToken)
+  console.log(accessToken)
   function changeStatus(orderID, status) {
     console.log('/api/updateOrderStatus', { orderID, status });
     
