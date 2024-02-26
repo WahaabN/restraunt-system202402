@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\MenuItem;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 
 
 
@@ -13,24 +16,15 @@ class MenuController extends Controller
 {
     //
     public function index(){
-        $items = [
-            ['type' => 'Hawaiian', 'base' => 'Cheesy crust'],
-            ['type' => 'Volcano', 'base' => 'Garlic crust'],
-            ['type' => 'Veg Supreme', 'base' => 'Thin & crispy'],
-            ['type' => 'Pepperoni', 'base' => 'Original crust'],
-            ['type' => 'Margherita', 'base' => 'Classic crust'],
-            ['type' => 'BBQ Chicken', 'base' => 'Stuffed crust'],
-            ['type' => 'Supreme', 'base' => 'Pan crust'],
-            ['type' => 'Spinach and Feta', 'base' => 'Whole wheat crust'],
-            ['type' => 'Meat Feast', 'base' => 'Deep dish crust'],
-            ['type' => 'Four Cheese', 'base' => 'Gluten-free crust'],
-            ['type' => 'Buffalo Chicken', 'base' => 'Hand-tossed crust'],
-            ['type' => 'Pesto', 'base' => 'Artisan crust'],
-            ['type' => 'Seafood', 'base' => 'Thin & crispy crust']
-        ];
-        
+        $items = MenuItem::all();
 
-        return view('menu', ['items' => $items]);
+
+        //error_log($items);
+        
+           
+    return Inertia::render('ItemMenu', [
+    'items'=> $items
+    ]);
     }
 
     
@@ -43,7 +37,19 @@ class MenuController extends Controller
     public function show($id){
 
 
+        $itemData = MenuItem::where('id', $id)->first();
 
-        return view('item', ["id" => $id]);
+       // error_log($itemData);
+        return Inertia::render('ViewMenuItem', ['itemData' => $itemData]);
+    }
+
+    public function addToCart($id){
+        $item = MenuItem::where('id', $id)->first();
+        $qty = request('qty');
+
+        error_log($item->id);
+        error_log($qty);
+
+       
     }
 }

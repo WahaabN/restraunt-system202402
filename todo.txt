@@ -1,0 +1,20 @@
+-separate orders and orderqueue into different tables
+	-foreign key in order queue referencing order table
+
+-createOrder system in different view
+
+-Cart System
+	-set up menu view
+	-checkout form
+		-product ID
+		-qty
+		-order name
+		-submit 
+			-payment
+			-/createOrder
+	-individual product view
+		-add to cart form
+	
+
+
+-admin add to menu

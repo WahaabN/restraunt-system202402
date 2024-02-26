@@ -28,34 +28,13 @@ Route::get('/', function () {
 });
 
 
-Route::get('/menu', function () {
-
-    $items = [
-        ['type' => 'Volcano', 'base' => 'Garlic crust'],
-        ['type' => 'Veg Supreme', 'base' => 'Thin & crispy'],
-        ['type' => 'Pepperoni', 'base' => 'Original crust'],
-        ['type' => 'Margherita', 'base' => 'Classic crust'],
-        ['type' => 'BBQ Chicken', 'base' => 'Stuffed crust'],
-        ['type' => 'Supreme', 'base' => 'Pan crust'],
-        ['type' => 'Spinach and Feta', 'base' => 'Whole wheat crust'],
-        ['type' => 'Meat Feast', 'base' => 'Deep dish crust'],
-        ['type' => 'Four Cheese', 'base' => 'Gluten-free crust'],
-        ['type' => 'Buffalo Chicken', 'base' => 'Hand-tossed crust'],
-        ['type' => 'Pesto', 'base' => 'Artisan crust'],
-        ['type' => 'Seafood', 'base' => 'Thin & crispy crust']
-    ];
-
-    
-    return Inertia::render('ItemMenu', [
-    'items'=> $items
-    ]);
-});
 
 
-
+Route::get('/menu', [MenuController::class, 'index'])->name('menu.index');
 
 Route::get('/queue', [MenuController::class, 'showOrders']);
-
+Route::get('/menu/{id}', [MenuController::class, 'show']);
+Route::post('/menu/{id}', [MenuController::class, 'addToCart']);
 
 
 Route::get('/dashboard', function (Request $request) {

@@ -38,12 +38,16 @@ export default function OrderQueue() {
 
               <div className={`queue-card col-4 p-4 awaiting-queue-card`} key={order.order_id}>
 
+                <a>
+
+                
                 <Card color='#ffffff'backgroundColor='#545454'>
                 <CardBody>
                 <h2>{order.order_number}</h2>
                 <h2>awaiting</h2>
   </CardBody>
                 </Card>
+                </a>
 
 
 
