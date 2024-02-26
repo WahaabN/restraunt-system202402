@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\CartItem;
 use App\Models\Order;
+use App\Models\Cart;
 use App\Models\MenuItem;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -44,12 +46,34 @@ class MenuController extends Controller
     }
 
     public function addToCart($id){
-        $item = MenuItem::where('id', $id)->first();
         $qty = request('qty');
+        $cartOwner = request('cartOwner');
+        $user = auth()->user();
+
+        $item = MenuItem::where('id', $id)->first();
+        $cart = Cart::where('owner', $cartOwner)->first();
+        $cartItem = new CartItem();
+        
+        if($cart == null){
+
+            $cart = new Cart();
+            $cart->owner = $cartOwner;
+            $cart->save();
+        }
+
+        $cartItem->cart_id = $cart->id;
+        $cartItem->item_id = $item->id;
+        $cartItem->qty = $qty;
+
+        $cartItem->save();
+
 
         error_log($item->id);
+        error_log($cartOwner);
         error_log($qty);
 
+
+        
        
     }
 }

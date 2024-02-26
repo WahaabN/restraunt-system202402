@@ -22,9 +22,9 @@ export default function ViewMenuItem({ itemData }) {
     function addToCart(itemID, qty) {
 
      // console.log('/menu/'+itemID, { itemID, qty });
-  
+      const cartOwner = "kiosk-1";
       // Send a POST request to update the status
-      axios.post('/menu/'+itemID,{ itemID, qty },{
+      axios.post('/menu/'+itemID,{ itemID, qty, cartOwner},{
 
       })
         .then(response => {
