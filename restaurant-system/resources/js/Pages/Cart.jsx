@@ -2,7 +2,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Card, CardHeader, CardBody, CardFooter } from '@chakra-ui/react'
+import { Card, CardHeader, CardBody, CardFooter, Divider } from '@chakra-ui/react'
 
 
 export default function Cart(props) {
@@ -22,7 +22,7 @@ export default function Cart(props) {
         
         <div className="row mt-2 p-4">
 
-          <div className="col-10">
+          <div  className="col-10">
           <h2>{item.name}</h2>
           </div>
           <div className="col-2">
@@ -31,7 +31,7 @@ export default function Cart(props) {
           </div>
  
 
-             
+          <Divider mt = {7} orientation='horizontal' />   
         </div>
        ))}
        
