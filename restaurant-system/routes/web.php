@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MenuController;
 use Illuminate\Foundation\Application;
@@ -35,6 +36,8 @@ Route::get('/menu', [MenuController::class, 'index'])->name('menu.index');
 Route::get('/queue', [MenuController::class, 'showOrders']);
 Route::get('/menu/{id}', [MenuController::class, 'show']);
 Route::post('/menu/{id}', [MenuController::class, 'addToCart']);
+
+Route::get('/cart', [CartController::class,'index']);
 
 
 Route::get('/dashboard', function (Request $request) {
