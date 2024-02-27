@@ -15,6 +15,9 @@
 	-individual product view
 		-add to cart form
 	
-
+	
 
 -admin add to menu
+
+
+-Helper functions?

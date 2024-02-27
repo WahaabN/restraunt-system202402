@@ -44,12 +44,19 @@ Route::post('/cart/checkout', [CartController::class,'checkout']);
 Route::get('/dashboard', function (Request $request) {
     $user = Auth::user();
     $user->tokens->each->delete();
-    $token = $user->createToken('dashboard-token')->plainTextToken;
+
+    if($user->userType == 'admin' || $user->userType == 'standard') {
+        $token = $user->createToken('dashboard-token')->plainTextToken;
+        return Inertia::render('Dashboard', [
+            'token' => $token
+        ]);
+    }else{
+        return redirect('/menu');
+    }
+    
 
 
-    return Inertia::render('Dashboard', [
-        'token' => $token
-    ]);
+
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
