@@ -11,6 +11,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
         name: user.name,
         email: user.email,
+        userType: user.userType
     });
 
     const submit = (e) => {
@@ -61,7 +62,24 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
 
                     <InputError className="mt-2" message={errors.email} />
                 </div>
+                <div>
+                <label for="userType">Type: </label>
 
+                    <select value = {data.userType} onChange={
+                        (e) => {
+                            setData('userType', e.target.value)
+                       
+                        }
+
+                    }style={{ marginLeft: "1rem" }} name="userType" id="userType">
+                            <option value="admin">Admin</option>
+                            <option value="standard">Standard</option>
+                            <option value="kiosk">Kiosk</option>
+                          
+                    </select>
+
+                    <InputError className="mt-2" message={errors.email} />
+                </div>
                 {mustVerifyEmail && user.email_verified_at === null && (
                     <div>
                         <p className="text-sm mt-2 text-gray-800">

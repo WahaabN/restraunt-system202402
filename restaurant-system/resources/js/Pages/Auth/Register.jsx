@@ -5,11 +5,13 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
+import { Select } from '@chakra-ui/react'
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
+        userType: 'admin',
         password: '',
         password_confirmation: '',
     });
@@ -41,7 +43,10 @@ export default function Register() {
                         className="mt-1 block w-full"
                         autoComplete="name"
                         isFocused={true}
-                        onChange={(e) => setData('name', e.target.value)}
+                        onChange={(e) => {setData('name', e.target.value)
+                    
+                          
+                    }}
                         required
                     />
 
@@ -63,6 +68,23 @@ export default function Register() {
                     />
 
                     <InputError message={errors.email} className="mt-2" />
+                </div>
+                <div className="mt-4">
+
+                <label for="cars">Type: </label>
+
+                    <select value = {data.userType} onChange={
+                        (e) => {
+                            setData('userType', e.target.value)
+                       
+                        }
+
+                    }style={{ marginLeft: "1rem" }} name="userType" id="userType">
+                            <option value="admin">Admin</option>
+                            <option value="standard">Standard</option>
+                            <option value="kiosk">Kiosk</option>
+                          
+                    </select>
                 </div>
 
                 <div className="mt-4">
