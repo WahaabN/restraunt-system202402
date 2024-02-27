@@ -10,12 +10,18 @@ export default function Cart(props) {
 
   let cartData = props.cartItems.itemData
 
-  console.table(cartData)
+//  console.table(cartData)
 
-  console.table(props.cartItems)
+ // console.table(props.cartItems)
 
+  const priceData = []
+  const [total, setTotal] = useState('')
 
+    cartData.map((item, index) => (
+      priceData[index] = item.qty
+    ))
 
+    console.table(priceData)
     return (<div className="container">
         
        {cartData.map((item, index) => (
@@ -35,5 +41,13 @@ export default function Cart(props) {
         </div>
        ))}
        
+       <div className="row mt-2">
+            <div className="col-10">
+
+            </div>
+            <div className="col-2">
+              <h2>{}</h2>
+            </div>
+       </div>
     </div>   );
 }

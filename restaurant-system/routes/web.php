@@ -38,7 +38,8 @@ Route::get('/menu/{id}', [MenuController::class, 'show']);
 Route::post('/menu/{id}', [MenuController::class, 'addToCart']);
 
 Route::get('/cart', [CartController::class,'index']);
-
+Route::get('/cart/checkout', [CartController::class,'loadCheckout']);
+Route::post('/cart/checkout', [CartController::class,'checkout']);
 
 Route::get('/dashboard', function (Request $request) {
     $user = Auth::user();
