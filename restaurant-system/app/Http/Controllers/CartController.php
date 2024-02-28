@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
@@ -70,17 +71,27 @@ class CartController extends Controller
 
             $order = new Order();
             $cart = Cart::where('owner', $user->id)->first();
+
+            $cartItems = CartItem::where('cart_id',$cart->id)->get();
             
             $order->customer_name = request("orderName");
             $order->order_number =  rand(1000, 9999).str_pad($order->id, 3, STR_PAD_LEFT);
             $order->status = 0;
             $order->save();
+            
 
+            foreach( $cartItems as $cartItem ){
+                $orderItem = new OrderItem();
+                $orderItem->item_id = $cartItem->item_id;
+                $orderItem->order_id = $order->id;
+                $orderItem->qty = $cartItem->qty;
+
+                $orderItem->save();
+            }   
 
             $cart->delete();
             
-            error_log(request("cartOwner"));
-            error_log(request("orderName"));
+
             
     } 
 }
