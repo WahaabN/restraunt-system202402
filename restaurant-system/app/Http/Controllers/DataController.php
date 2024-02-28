@@ -5,19 +5,28 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Support\Facades\Auth;
 class DataController extends Controller
 {
     public function index()
     {
         $data = Order::all();
+        
+        
 
+    
+        $orderItems = OrderItem::all();
         $user = Auth::user();
         
    
+        $responseData = [
+            'orders' => $data,
+            'orderItems' => $orderItems,
+       
+        ];
 
-
-        return response()->json($data);
+        return response()->json($responseData);
     }
 
 
