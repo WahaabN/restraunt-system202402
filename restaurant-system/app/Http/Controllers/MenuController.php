@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
-
+use Illuminate\Support\Facades\Auth;
 
 
 class MenuController extends Controller
@@ -46,10 +46,15 @@ class MenuController extends Controller
     }
 
     public function addToCart($id){
-        $qty = request('qty');
-        $cartOwner = request('cartOwner');
-        $user = auth()->user();
 
+    
+
+
+        $qty = request('qty');
+   
+        $user = auth()->user();
+        $cartOwner = $user->id;
+        
         $item = MenuItem::where('id', $id)->first();
         $cart = Cart::where('owner', $cartOwner)->first();
         $cartItem = new CartItem();

@@ -65,7 +65,7 @@ export default function Cart(props) {
             mt={4}
             colorScheme='teal'
             onClick={() => {
-              checkout("kiosk-1")
+              checkout()
             }}
             type='submit'
           >

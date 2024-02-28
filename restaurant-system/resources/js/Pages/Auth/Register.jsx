@@ -71,7 +71,7 @@ export default function Register() {
                 </div>
                 <div className="mt-4">
 
-                <label for="cars">Type: </label>
+                <label for="userType">Type: </label>
 
                     <select value = {data.userType} onChange={
                         (e) => {
