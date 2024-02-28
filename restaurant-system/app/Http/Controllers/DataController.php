@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\MenuItem;
 use Illuminate\Support\Facades\Auth;
 class DataController extends Controller
 {
@@ -19,7 +20,19 @@ class DataController extends Controller
         $orderItems = OrderItem::all();
         $user = Auth::user();
         
+
+        foreach($orderItems as $item){
+            $menuItem = MenuItem::where('id',$item->item_id)->first();
+            
+            $item->itemName = $menuItem->name;
+            
+        }
+       
+
+
+     //   $orderItems['productData'] = $menuItemsArray;
    
+     error_log($orderItems);
         $responseData = [
             'orders' => $data,
             'orderItems' => $orderItems,

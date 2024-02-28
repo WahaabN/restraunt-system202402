@@ -19,17 +19,19 @@ export default function OrderDetails(props) {
 
     const [data, setOrderData] = useState(filteredItems)
 
-
+   // console.table(data)
     return (
      <div>
         {data.map((orderItem) => (
             <div className="row">
 <div className="d-flex">
-                <p>ItemName: {orderItem.item_id}</p>
-                <p>qty: {orderItem.qty}</p>
+                <p>{orderItem.itemName}</p>
+                <p className='ml-auto'> x{orderItem.qty}</p>
             </div>
             </div>
 
         ))}
      </div>   );
 }
+
+
