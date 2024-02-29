@@ -7,6 +7,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use App\Models\MenuItem;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -38,17 +39,24 @@ Route::get('/menu/{id}', [MenuController::class, 'show']);
 Route::post('/menu/{id}', [MenuController::class, 'addToCart']);
 
 Route::get('/cart', [CartController::class,'index']);
+Route::get('/cart', [CartController::class,'index']);
 Route::get('/cart/checkout', [CartController::class,'loadCheckout']);
 Route::post('/cart/checkout', [CartController::class,'checkout']);
 
+
+Route::post('/dashboard/add/{id}', [MenuController::class,'addToCart']);
 Route::get('/dashboard', function (Request $request) {
     $user = Auth::user();
+    
     $user->tokens->each->delete();
 
     if($user->userType == 'admin' || $user->userType == 'standard') {
         $token = $user->createToken('dashboard-token')->plainTextToken;
+
+        $items = MenuItem::all();
         return Inertia::render('Dashboard', [
-            'token' => $token
+            'token' => $token,
+            'items' => $items
         ]);
     }else{
         return redirect('/menu');
